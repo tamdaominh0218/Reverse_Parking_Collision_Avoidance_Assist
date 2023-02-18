@@ -11,7 +11,8 @@ void setup()
  
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
-  pinMode (13, OUTPUT);
+  pinMode (13, OUTPUT);  //chân 13 phát tín hiệu đèn
+  pinMode (12, OUTPUT);  //chân 12 phát tín hiệu còi 
   
   queue_1 = xQueueCreate(5, sizeof(int));
   if (queue_1 == NULL)
@@ -38,12 +39,14 @@ void Taskdisplay(void * pvParameters)
           Serial.println("Dangerous!");
     
           digitalWrite(13, HIGH);
+          digitalWrite(12, HIGH);
     }
     else 
     {
           Serial.println("Safe!");
          
           digitalWrite(13, LOW);
+          digitalWrite(12, HIGH);
      }
      vTaskDelay( 500 / portTICK_PERIOD_MS );
    }
