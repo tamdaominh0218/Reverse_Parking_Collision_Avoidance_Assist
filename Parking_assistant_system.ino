@@ -5,7 +5,8 @@ QueueHandle_t queue_1;
 
 #define trigPin 3    // Trig 3
 #define echoPin 4    // Echo 4
-void setup() {
+void setup() 
+{
   Serial.begin(9600);
  
   pinMode(trigPin, OUTPUT);
@@ -21,16 +22,18 @@ void setup() {
   xTaskCreate(Taskdo, "Distance", 128, NULL, 1, NULL);
   vTaskStartScheduler();
 }
-void loop(){
-}
-void Taskdisplay(void * pvParameters) {
+
+void Taskdisplay(void * pvParameters) 
+{
   int a;
-  while(1) {
-  if ( xQueueReceive(queue_1, &a, portMAX_DELAY) == pdPASS) {
+  while(1) 
+  {
+  if ( xQueueReceive(queue_1, &a, portMAX_DELAY) == pdPASS) 
+   {
   Serial.print("Distance: ");
   Serial.println(a);
   if(a < 20)
-  {
+    {
     Serial.println("Nguy Hiem");
     
     digitalWrite(13, HIGH);
@@ -40,14 +43,18 @@ void Taskdisplay(void * pvParameters) {
           Serial.println("An toan");
          
           digitalWrite(13, LOW);
-      }
-              vTaskDelay( 500 / portTICK_PERIOD_MS );
-}}
+     }
+     vTaskDelay( 500 / portTICK_PERIOD_MS );
+   }
+  }
 }
-void Taskdo(void * pvParameters) {
+
+void Taskdo(void * pvParameters) 
+{
   long duration;
   int distance;
-  while(1) {
+  while(1) 
+  {
   digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
   digitalWrite(trigPin, HIGH);
