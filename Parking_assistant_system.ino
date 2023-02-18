@@ -16,7 +16,7 @@ void setup()
   queue_1 = xQueueCreate(5, sizeof(int));
   if (queue_1 == NULL)
   {
-  Serial.println("Queue can not be created");
+  Serial.println("Queue can not be created!");
   }
   xTaskCreate(Taskdisplay, "Display_task", 128, NULL, 2, NULL);
   xTaskCreate(Taskdo, "Distance", 128, NULL, 1, NULL);
@@ -32,15 +32,16 @@ void Taskdisplay(void * pvParameters)
    {
   Serial.print("Distance: ");
   Serial.println(a);
+  Serial.println(" cm");
   if(a < 20)
     {
-    Serial.println("Nguy Hiem");
+          Serial.println("Dangerous!");
     
-    digitalWrite(13, HIGH);
+          digitalWrite(13, HIGH);
     }
     else 
     {
-          Serial.println("An toan");
+          Serial.println("Safe!");
          
           digitalWrite(13, LOW);
      }
