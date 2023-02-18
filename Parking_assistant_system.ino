@@ -64,8 +64,8 @@ void Taskdo(void * pvParameters)
   digitalWrite(trigPin, HIGH);
   delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
-  duration = pulseIn(echoPin, HIGH);   //Đo độ rộng xung HIGH ở chân echo. 
-  distance = (duration*.0343)/2;       //Tính khoảng cách đến vật cản(Hàm pulseIn() được dùng để đo độ rộng của xung)
+  duration = pulseIn(echoPin, HIGH);   //Đo độ rộng xung HIGH ở chân echo (Hàm pulseIn() được dùng để đo độ rộng của xung)
+  distance = (duration/2/29.412);      //Tính khoảng cách đến vật cản
   xQueueSend(queue_1, &distance, portMAX_DELAY);
   vTaskDelay( 1500 / portTICK_PERIOD_MS );
   }
