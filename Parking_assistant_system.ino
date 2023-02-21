@@ -20,7 +20,7 @@ void setup()
   Serial.println("Queue can not be created!");
   }
   xTaskCreate(Taskdisplay, "Display_task", 128, NULL, 2, NULL);
-  xTaskCreate(Taskdo, "Distance", 128, NULL, 1, NULL);
+  xTaskCreate(TaskMeasure, "Distance", 128, NULL, 1, NULL);
   vTaskStartScheduler();
 }
 
@@ -53,7 +53,7 @@ void Taskdisplay(void * pvParameters)
   }
 }
 
-void Taskdo(void * pvParameters) 
+void TaskMeasure(void * pvParameters) 
 {
   long duration;  //biến đo thời gian
   int distance;   //biến đo khoảng cách
